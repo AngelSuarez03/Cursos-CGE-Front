@@ -1,0 +1,7 @@
+.main_agregar_tipo_curso{
+    flex-grow: 1;
+    max-height: 60vh;
+    overflow-y: scroll;
+    max-width: 100%;
+    scrollbar-width: none;
+  }

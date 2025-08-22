@@ -1,0 +1,365 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+
+
+.Card-Container {
+    display: flex;
+    align-items: center;
+    margin-bottom: -1vw;
+    padding-left: 1vw;
+    
+}
+
+.Card-Info-Cursos{
+    max-width: 100%;
+    margin-left: 10vw;
+}
+
+.Card-Contenedor{
+    margin-right: 2vw;
+}
+
+.Card-Image {
+    width: 12vw;
+    height: auto;
+    padding-right: 2vw;
+    margin-top: -.8vw;
+}
+
+.Card-Content {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+.Card-Content .Card-Actions{
+    max-width: 100%;
+    margin-top: -3vw;  
+}
+
+.Card-Titulo {
+    font-weight: bold;
+    font-size: 1.2em;
+    max-width: 65%;
+}
+
+.Card-Lugares{
+    font-weight: bold;
+    font-size: 1.2em;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+#cupoDisponible {
+    text-align: end;
+    margin-bottom: -3vh;
+    margin-right: 0.5vw;
+}
+
+#numeroCupoDisponible {
+    border-radius: 10px;
+    padding-right: 0.5vw;
+    padding-left: 0.5vw;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    display: inline;
+    margin-top: -5vh;
+    margin-bottom: -5vh;
+}
+
+.Info-Card {
+    display: flex;
+    flex-direction: column;
+}
+
+.Card-text {
+    margin: 5px 0;
+}
+
+.Card-Actions {
+    max-width: 100%;
+    display: flex;
+    justify-content: flex-end;
+}   
+
+.Card-Titulo{
+    font-size: 1.5vw;
+    font-family: 'Roboto', sans-serif;
+    font-weight: bold;
+}
+
+.Info-Card{
+  padding-top: 0vw;
+  display: grid;
+  height: 100%;
+  grid-template-columns: repeat(1, 4r);
+  gap: .6vw;
+
+}
+
+.Card-text{
+    font-size: 1vw;
+    font-family: 'Roboto', sans-serif;
+}
+
+.Boton-Card{
+    background-color: #E7B756;
+    color: black;
+    margin-left: .8vw;
+    margin-bottom: 1vw;
+    font-size: 1vw;
+    border: 0;
+    border-radius: 5px;
+    padding: .7vw;
+    box-shadow: 0px 6px 40px -6px rgba(0,0,0,0.49);
+    font-family: 'Roboto', sans-serif;
+
+}
+
+.Boton-Card:hover {
+    box-shadow: 0px 10px 40px -4px rgba(0, 0, 0, 0.6);
+}
+
+.Boton-Card:active {
+    background-color: #c69740; /* Un color más oscuro para el click */
+}
+
+@media (max-width: 1280px) {
+
+    .Card-Info-Cursos{
+        max-width: 100%;
+        margin-right: 9vw;
+        margin-left: 6vw;
+    }
+    
+
+    .Card-Image{
+        display: none;
+    }
+
+    .Card-Container{
+        margin-top: -1vw;
+        margin-bottom: -2.5vw;
+        padding-left: 1vw;
+    }
+    .Card-Content{
+        max-width: 100%;
+        padding-bottom: 1vw;
+    }
+
+    .Card-Contenedor{
+        max-width: 100%;
+        width: 100vw;
+        margin-left: 5vw;
+        margin-right: 5vw;
+    }
+
+    .Card-Titulo{
+        padding-top: 1vw;
+        font-size: 2vw;
+    }
+
+    .Card-text{
+        font-size: 1.5vw;
+    }
+
+    .Card-Content .Card-Actions{
+        max-width: 100%;
+        margin-top: -5vw;  
+    }
+
+    .Boton-Card{
+        font-size: 1.5vw;
+        padding: 1vw;
+        
+    }
+    
+}
+
+
+
+@media (max-width: 1024px) {
+
+    .Card-Info-Cursos{
+        max-width: 100%;
+        margin-right: 12vw;
+        margin-left: 2vw;
+    }
+    
+
+    .Card-Image{
+        display: none;
+    }
+
+    .Card-Container{
+        margin-top: -1.5vw;
+        margin-bottom: -3vw;
+    }
+    .Card-Content{
+        max-width: 100%;
+        padding-bottom: 1vw;
+    }
+
+    .Card-Contenedor{
+        max-width: 100%;
+        width: 100vw;
+        margin-left: 10vw;
+        margin-right: 5vw;
+    }
+
+    .Card-Titulo{
+        padding-top: 1vw;
+        font-size: 2.5vw;
+    }
+
+    .Card-text{
+        font-size: 2vw;
+    }
+
+    .Card-Content .Card-Actions{
+        max-width: 100%;
+        margin-top: -6vw;  
+    }
+
+    .Boton-Card{
+        font-size: 2vw;
+        padding: 1vw;
+        
+    }
+    
+}
+
+@media (max-width: 800px) {
+
+    .Card-Image{
+        display: none;
+    }
+
+    .Card-Container{
+        margin-top: -2vw;
+        margin-bottom: -3vw;
+    }
+    .Card-Content{
+        max-width: 100%;
+        padding-bottom: 1vw;
+    }
+
+    .Card-Contenedor{
+        max-width: 100%;
+        width: 100vw;
+        margin-left: 9vw;
+        margin-right: 5vw;
+    }
+
+    .Card-Titulo{
+        padding-top: 1vw;
+        font-size: 3vw;
+    }
+
+    .Card-text{
+        font-size: 2vw;
+    }
+
+    .Card-Content .Card-Actions{
+        max-width: 100%;
+        margin-top: -6vw;  
+    }
+
+    .Boton-Card{
+        font-size: 2vw;
+        padding: 1vw;
+        
+    }
+    
+}
+
+@media (max-width: 575px) {
+    .Card-Image{
+        display: none;
+    }
+
+    .Card-Container{
+        margin-top: -2vw;
+        margin-bottom: -4vw;
+    }
+    .Card-Content{
+        max-width: 100%;
+        padding-bottom: 1vw;
+    }
+
+    .Card-Contenedor{
+        max-width: 100%;
+        width: 100vw;
+        margin-left: 10vw;
+        margin-right: 5vw;
+    }
+
+    .Card-Titulo{
+        padding-top: 1vw;
+        font-size: 5vw;
+    }
+
+    .Card-text{
+        font-size: 3.5vw;
+    }
+
+    .Card-Content .Card-Actions{
+        max-width: 100%;
+        margin-top: -9vw;  
+    }
+
+    .Boton-Card{
+        font-size: 3.5vw;
+        padding: 1vw;
+        
+    }
+    
+    
+}
+
+@media (max-width: 375px) {
+
+    .Card-Container{
+        margin-top: -2vw;
+        margin-bottom: -5vw;
+    }
+    .Card-Content{
+        max-width: 100%;
+        padding-bottom: 1vw;
+    }
+
+    .Card-Contenedor{
+        max-width: 100%;
+        width: 100vw;
+        margin-left: 10vw;
+        margin-right: 5vw;
+    }
+
+    .Card-Lugares{
+        padding-top: 0vw;
+    }
+
+    .Card-Titulo{
+        padding-top: 0vw;
+        font-size: 5vw;
+        
+    }
+
+    .Card-text{
+        font-size: 3.5vw;
+    }
+
+    .Card-Content .Card-Actions{
+        max-width: 100%;
+        margin-top: -10vw;  
+    }
+
+    .Boton-Card{
+        font-size: 4vw;
+        padding: 1vw;
+        
+    }
+    
+}
+
+

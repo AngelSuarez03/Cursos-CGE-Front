@@ -1,0 +1,172 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+.layout_Select{
+    border-radius: 20px;
+    background-color: #A35494;
+    padding-top: 2vh;
+}
+
+.header_Select{
+    color: white;
+
+    padding-left: 5vh;
+  }
+
+
+  .header_Select h1{
+
+    font-size: 2vw;
+
+  }
+
+  .footer_Select {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-top: 2vh;
+    padding-right: 5vh;
+    height: 100%;
+
+  }
+
+  .textoBusqueda {
+    font-size: 30px;
+    display: inline-block;
+    min-width: 15vw;
+    font-family: 'Roboto', sans-serif;
+  }
+
+  h1 {
+    font-family: 'Roboto', sans-serif;
+  }
+
+  .cuadroBusqueda {
+    min-width: 37.5vw;
+  }
+
+  .cuadroBusqueda::placeholder {
+    font-size: 1em;
+    color: #B1B1B1;
+  }
+  
+  .main_Select {
+    flex-grow: 1;
+    padding-bottom: 3.5vh;
+    max-height: 50vh;
+    overflow-y: scroll;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+  
+  .footer_Select {
+    margin-top: 5vh;
+  }
+
+  .boton_Modificar{
+    background-color:#E7B756 ;
+    color: white;
+  }
+
+
+
+  .layout_Modificar_Curso{
+    border-radius: 20px;
+    background-color: #A35494;
+    padding-top: 2vh;
+    margin-top: 2vh;
+}
+
+.header_Modificar_Curso{
+    color: white;
+  }
+  .footer_Modificar_Curso {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-right: 5vh;
+    height: 100%;
+
+  }
+  
+  .main_Modificar_Curso{
+    flex-grow: 1;
+    max-height: 70vh;
+    overflow-y: scroll;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+  
+  
+  .footer_Modificar_Curso {
+    padding-bottom: 2vh;
+  }
+
+
+
+
+  .ScrollRegistro2 {
+    height: 67vh;
+    overflow-y: scroll;
+    margin-left: 2vw;
+    margin-right: 2vw;
+}
+
+.ScrollRegistro2::-webkit-scrollbar {
+    width: .5vw;
+    height: 1vh;
+}
+
+.ScrollRegistro2::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.ScrollRegistro2::-webkit-scrollbar-thumb {
+    background-color: #E8ABCE;
+    border-radius: 10px;
+    border: 2px solid transparent;
+}
+
+.ScrollRegistro2::-webkit-scrollbar-thumb:hover {
+    background-color: #E8ABFF;
+}
+
+
+
+
+.layout_agregar_curso{
+  border-radius: 20px;
+  background-color: #A35494;
+  padding-top: 0.5vw;
+  margin-top: 20vh;
+}
+
+.header_agregar_curso{
+  color: white;
+}
+.footer_agregar_Curso {
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  padding-right: 5vw;
+  height: 100%;
+
+}
+
+.main_agregar_Curso{
+  flex-grow: 1;
+  max-height: 70vh;
+  overflow-y: scroll;
+  max-width: 100%;
+  scrollbar-width: none;
+}
+
+.footer_agregar_Curso {
+  padding-bottom: 2vh;
+}
+

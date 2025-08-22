@@ -1,0 +1,52 @@
+.layout_agregar_curso{
+    border-radius: 20px;
+    background-color: #A35494;
+    margin-top: 2vw;
+    margin-left: 1vw;
+    margin-bottom: 4vw;
+    padding-left: 1vw;
+    padding-right: 1vw;
+    padding-bottom: 1vw;
+    width: 40vw;
+}
+
+.header_agregar_curso{
+    color: white;
+    height: 5vw;
+    padding-top: .5vw;
+    max-width: 100%;
+  }
+  .grid-header{
+
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr)); 
+    justify-content: space-between;
+    align-items: center; 
+    display: flex;
+    width: 100%;
+  }
+  .footer_agregar_Curso {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-top: 2vw;
+    padding-right: 0vw;
+    height: 100%;
+
+  }
+  
+  .main_agregar_curso{
+    flex-grow: 1;
+    max-height: 65vh;
+    overflow-y: scroll;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+  
+  .footer_agregar_curso {
+    padding-bottom: 0vw;
+  }
+
+

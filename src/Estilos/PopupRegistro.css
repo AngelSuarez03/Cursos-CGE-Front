@@ -1,0 +1,35 @@
+
+.layout_Modificar_Curso{
+    border-radius: 20px;
+    background-color: #A35494;
+    padding-top: 2vh;
+    margin-top: 26vh;
+}
+
+.header_Modificar_Curso{
+    color: white;
+  }
+  .footer_Modificar_Curso {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    padding-top: 2vh;
+    padding-right: 5vh;
+    height: 100%;
+
+  }
+  
+  .main_Modificar_Curso{
+    flex-grow: 1;
+    max-height: 50vh;
+    overflow-y: scroll;
+    max-width: 100%;
+    scrollbar-width: none;
+  }
+  
+  .footer_Modificar_Curso {
+    padding-bottom: 2vh;
+  }
+
