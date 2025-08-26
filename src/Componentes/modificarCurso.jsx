@@ -238,7 +238,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Nombre del Curso: *
+                                    Nombre: *
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>

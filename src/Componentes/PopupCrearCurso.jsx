@@ -1,4 +1,4 @@
-import { Button, CardActions, CardContent, CardHeader, Typography, Grid, TextField, Select, MenuItem } from '@mui/material';
+import { Button, CardActions, CardContent, CardHeader, Typography, Grid, TextField, Select, MenuItem, TextareaAutosize } from '@mui/material';
 import { useState, useEffect, useRef } from 'react';
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import Arrow from '../assets/cerrar2.svg'
@@ -39,7 +39,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         titulo: '',
         mensaje: ''
     })
-    
+
     const [selectedFile, setFile] = useState(null);
     const [fileName, setFileName] = useState('');
 
@@ -80,7 +80,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
 
     const handleInputNumbers = (e) => {
         const { name, value } = e.target;
-    
+
         if (/^[1-9][0-9]*$/.test(value) || value === "") {
             setDataCurso({
                 ...DataCurso,
@@ -173,8 +173,8 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         e.preventDefault();
 
         const validationFields = validateFields();
-        
-        if (Object.keys(validationFields).length > 0){
+
+        if (Object.keys(validationFields).length > 0) {
             setErrors(validateFields);
             return;
         }
@@ -262,7 +262,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                         <CardContent sx={{ color: '#FFFFFF' }}>
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Nombre del Curso:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Nombre:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' size='small' name='nombreCurso'
@@ -333,6 +333,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                     >
                                         <MenuItem value='Presencial'>Presencial</MenuItem>
                                         <MenuItem value='Virtual'>Virtual</MenuItem>
+                                        <MenuItem value='Autoaprendizaje'>Autoaprendizaje</MenuItem>
                                     </Select>
                                 </Grid>
                             </Grid>
@@ -374,9 +375,27 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                 </Grid>
                             )}
 
-                            <Grid container item xs={12} alignItems='center' spacing={2}>
+                            {DataCurso.modalidad === 'Autoaprendizaje' && (
+                                <Grid container item xs={12} alignItems="center" spacing={2}>
+                                    <Grid item xs={6}>
+                                        <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Liga Moodle:</Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField fullWidth variant='outlined' size='small' name='ligaMoodle'
+                                            onChange={handleInputChange}
+                                            sx={{
+                                                backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
+                                                '& .MuiOutlinedInput-root': {
+                                                    borderRadius: '15px',
+                                                }
+                                            }} />
+                                    </Grid>
+                                </Grid>
+                            )}
+
+                            <Grid container item xs={12} alignItems='center' spacing={2} sx={{ display: DataCurso.tipo === "Jornada" ? "none" : "flex" }}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Persona que Imparte el Curso:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Persona que imparte el curso:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' size='small' name='imparte'
@@ -394,7 +413,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
 
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Lugares Disponibles:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Lugares disponibles:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' size='small' name='cupo'
@@ -411,7 +430,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
 
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Correo de Seguimiento:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Correo de seguimiento:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' placeholder='cursos.ivai@gmail.com' size='small' name='correoSeguimiento'
@@ -428,7 +447,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
 
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Estatus Curso:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Estatus:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
@@ -456,7 +475,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
 
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Tipo Curso:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Tipo de capacitación:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
@@ -486,7 +505,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems='center' spacing={2}>
+                            <Grid container item xs={12} alignItems='center' spacing={2} sx={{ display: DataCurso.tipo === "Jornada" ? "none" : "flex" }}>
                                 <Grid item xs={6}>
                                     <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Curso:</Typography>
                                 </Grid>
@@ -516,7 +535,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
 
                             <Grid container item xs={12} alignItems='center' spacing={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Valor Curricular en Horas:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Valor curricular en horas:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' size='small' name='valorCurricular'
@@ -531,9 +550,36 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems='center' spacing={2}>
+                            {DataCurso.tipo === 'Jornada' && (
+                                <Grid container item xs={12} alignItems="center" spacing={2} marginTop={0}>
+                                    <Grid item xs={6}>
+                                        <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Detalles:</Typography>
+                                    </Grid>
+                                    <Grid item xs={6}>
+                                        <TextField
+                                            fullWidth
+                                            variant="outlined"
+                                            size="small"
+                                            name="direccion"
+                                            multiline
+                                            minRows={3}
+                                            value={DataCurso.direccion}
+                                            onChange={handleInputChange}
+                                            sx={{
+                                                backgroundColor: '#FFFFFF',
+                                                borderRadius: '15px',
+                                                '& .MuiOutlinedInput-root': {
+                                                    borderRadius: '15px',
+                                                },
+                                            }}
+                                        />
+                                    </Grid>
+                                </Grid>
+                            )}
+
+                            <Grid container item xs={12} alignItems='center' spacing={2} sx={{ display: DataCurso.tipo === "Jornada" ? "none" : "flex" }}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Constacia del Curso:</Typography>
+                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Constacia de la capacitación:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Button

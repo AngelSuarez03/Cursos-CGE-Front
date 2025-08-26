@@ -10,35 +10,37 @@ import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
 import { API_URL } from '../util/Constantes.js';
 
-function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setIsLoading, cuposRestantes, setCuposRestantes }) {
+function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, setIsLoading, cuposRestantes, setCuposRestantes }) {
 
 
     const [errors, setErrors] = useState({});
 
     const [isError, setIsError] = useState(false);
 
-    const [dataError, setDataError] = useState({
+    const [dataError, setDataError] = useState(({
         titulo: '',
         mensaje: ''
-    })
+    }))
 
     const [dataRegistro, setDataRegistro] = useState({
         nombre: '',
         apellidos: '',
         gradoDeEstudios: '',
         lugarDeProcedencia: '',
-        orden: '',
+        ordenGobierno: '',
         genero: '',
-        estado: '',
-        so: '',
-        areaAdquisicion: '',
+        tipoSO: '',
+        SO: '',
+        nombreEntidad: '',
+        areaAdscripcion: '',
         cargoPublico: '',
-        recibirInformacion: false,
         correo: '',
         telefono: '',
-        interprete: false,
         idCurso: window.localStorage.getItem('id')
     })
+
+    const [dataPadron, setDataPadron] = useState([]);
+    const [dataTipoSO, setDataTipoSO] = useState([]);
 
     const validateFields = () => {
         const newErrors = {};
@@ -62,55 +64,60 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
     const handleRegistration = async () => {
         const validationErrors = validateFields();
         if (Object.keys(validationErrors).length > 0) {
-           setErrors(validationErrors);
-           return;
+            setErrors(validationErrors);
+            return;
         }
-     
-        setIsLoading(true);
-     
-        try {
-           const response = await axios.post(`${API_URL}registrarse`, dataRegistro);
-           setIsLoading(false);
-     
-           if (response.data === 'Registro Correcto' && response.status === 200) {
-            let cupos = cuposRestantes;
-            setCuposRestantes(cupos - 1);
-            cuposRestantes = cupos - 1;
-              onOpenPopupMsj({
-                 titulo: 'Registro Exitoso',
-                 mensaje: 'El proceso se ha realizado correctamente. \nLe hemos enviado un correo electrónico con el enlace de acceso, favor de verificar todas las bandejas del correo electrónico.'
-              }, false);
-              //onReload();
-           } else if (response.data === 'Curso lleno' && response.status === 200) {
 
-              onOpenPopupMsj({
-                 titulo: 'Curso Lleno',
-                 mensaje: 'El curso al que intenta registrarse se encuentra lleno. \nNo es posible procesar su registro.'
-              }, true);
-           } else if (response.data === 'Correo Existente' && response.status === 200){
-             onOpenPopupMsj({
-                titulo: 'Correo ya registrado',
-                mensaje: 'El correo ya se encuentra registrado en el curso.'
-             },true)
-           } else {
-              onOpenPopupMsj({
-                 titulo: 'Error en el Registro',
-                 mensaje: 'Ocurrió un error durante el proceso. Por favor, inténtelo de nuevo más tarde.'
-              }, true);
-           }
+        setIsLoading(true);
+
+        try {
+            const response = await axios.post(`${API_URL}registrarse`, dataRegistro);
+            setIsLoading(false);
+
+            if (response.data === 'Registro Correcto' && response.status === 200) {
+                let cupos = cuposRestantes;
+                setCuposRestantes(cupos - 1);
+                cuposRestantes = cupos - 1;
+                onOpenPopupMsj({
+                    titulo: 'Registro Exitoso',
+                    mensaje: 'El proceso se ha realizado correctamente. \nLe hemos enviado un correo electrónico con el enlace de acceso, favor de verificar todas las bandejas del correo electrónico.'
+                }, false);
+                //onReload();
+            } else if (response.data === 'Curso lleno' && response.status === 200) {
+
+                onOpenPopupMsj({
+                    titulo: 'Curso Lleno',
+                    mensaje: 'El curso al que intenta registrarse se encuentra lleno. \nNo es posible procesar su registro.'
+                }, true);
+            } else if (response.data === 'Correo Existente' && response.status === 200) {
+                onOpenPopupMsj({
+                    titulo: 'Correo ya registrado',
+                    mensaje: 'El correo ya se encuentra registrado en el curso.'
+                }, true)
+            } else {
+                onOpenPopupMsj({
+                    titulo: 'Error en el Registro',
+                    mensaje: 'Ocurrió un error durante el proceso. Por favor, inténtelo de nuevo más tarde.'
+                }, true);
+            }
         } catch (error) {
-           console.error('Error en el servidor', error);
-           setIsLoading(false);
-           onOpenPopupMsj({
-              titulo: 'Error en el servidor',
-              mensaje: 'Ocurrió un error. Por favor, inténtelo de nuevo más tarde.'
-           }, true);
+            console.error('Error en el servidor', error);
+            setIsLoading(false);
+            onOpenPopupMsj({
+                titulo: 'Error en el servidor',
+                mensaje: 'Ocurrió un error. Por favor, inténtelo de nuevo más tarde.'
+            }, true);
         }
-     };
+    };
 
     const handleInputChange = (e) => {
         const { name, value } = e.target;
-        setDataRegistro({ ...dataRegistro, [name]: value });
+        //setDataRegistro({ ...dataRegistro, [name]: value });
+        if (name === 'tipoSO') {
+            setDataRegistro({ ...dataRegistro, tipoSO: value, SO: '' });
+        } else {
+            setDataRegistro({ ...dataRegistro, [name]: value });
+        }
         setErrors({ ...errors, [name]: '' });
     };
 
@@ -136,6 +143,31 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
         };
 
         obtenerEstados();
+    }, []);
+
+    useEffect(() => {
+        const obtenerSO = async () => {
+            try {
+                const response = await axios.get(`${API_URL}sujetos`)
+                const flatData = response.data.flat();
+                setDataPadron(flatData);
+            } catch (error) {
+                console.error('Error al obtener el Padron de Sujetos Obligados');
+            }
+        };
+        obtenerSO();
+    }, []);
+
+    useEffect(() => {
+        const obtenerTipoSO = async () => {
+            try {
+                const response = await axios.get(`${API_URL}tipoSujetos`)
+                setDataTipoSO(response.data);
+            } catch (error) {
+                console.error('Error al obtener el Padron de Sujetos Obligados');
+            }
+        };
+        obtenerTipoSO();
     }, []);
 
     const handleClose = () => {
@@ -169,11 +201,11 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                             Los campos marcados con <br />
                                             asterisco (*) son obligatorios
                                         </label>
-                                        
+
                                     </Grid>
                                     <label className='lbl-campos-obligatorios' >
-                                    Escribe correctamente tu nombre, ya que se tomara en cuenta para la constancia.
-                                        </label>
+                                        Escribe correctamente tu nombre, ya que se tomara en cuenta para la constancia.
+                                    </label>
                                 </Grid>
                                 <Grid item>
 
@@ -194,7 +226,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                     <div className='ScrollRegistro'>
 
                         <CardContent sx={{ color: '#FFFFFF' }}>
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Nombre(s)*:</Typography>
                                 </Grid>
@@ -208,7 +240,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Apellidos*:</Typography>
                                 </Grid>
@@ -223,7 +255,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                             </Grid>
 
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Último grado de estudios:</Typography>
                                 </Grid>
@@ -254,7 +286,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Lugar de procedencia:</Typography>
                                 </Grid>
@@ -268,13 +300,13 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Orden de gobierno:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
-                                        name='orden'
+                                        name='ordenGobierno'
                                         fullWidth
                                         variant="outlined"
                                         size="small"
@@ -287,14 +319,13 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                         }}
                                         defaultValue=""
                                     >
-                                        <MenuItem value="Federal">Federal</MenuItem>
                                         <MenuItem value="Estatal">Estatal</MenuItem>
                                         <MenuItem value="Municipal">Municipal</MenuItem>
                                     </Select>
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Género:</Typography>
                                 </Grid>
@@ -320,37 +351,81 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Estado:</Typography>
+                                    <Typography variant="body2">Nombre de la entidad o dependencia:</Typography>
                                 </Grid>
-                                <Grid item xs={6}>
+                                <Grid item xs={3}>
                                     <Select
-                                        name='estado'
+                                        name='tipoSO'
                                         fullWidth
                                         variant="outlined"
                                         size="small"
                                         onChange={handleInputChange}
+                                        value={dataRegistro.tipoSO || ''}
                                         sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                             '& .MuiOutlinedInput-root': {
                                                 borderRadius: '15px',
                                             }
                                         }}
+                                        MenuProps={{
+                                            PaperProps: {
+                                                sx: {
+                                                    maxWidth: 300, 
+                                                    maxHeight: 300,
+                                                },
+                                            },
+                                        }}
                                     >
-                                        {estados.map((estado) => (
-                                            <MenuItem value={estado}>{estado}</MenuItem>
+                                        {dataTipoSO.map((t, index) => (
+                                            <MenuItem key={index} value={t} sx={{ whiteSpace: 'normal' }}>
+                                                {t}
+                                            </MenuItem>
                                         ))}
+                                    </Select>
+                                </Grid>
+                                <Grid item xs={3}>
+                                    <Select
+                                        name='SO'
+                                        fullWidth
+                                        variant="outlined"
+                                        size="small"
+                                        onChange={handleInputChange}
+                                        disabled={!dataRegistro.tipoSO}
+                                        value={dataRegistro.SO || ''}
+                                        sx={{
+                                            backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
+                                            '& .MuiOutlinedInput-root': {
+                                                borderRadius: '15px',
+                                            }
+                                        }}
+                                        MenuProps={{
+                                            PaperProps: {
+                                                sx: {
+                                                    maxWidth: 300, 
+                                                    maxHeight: 300,
+                                                },
+                                            },
+                                        }}
+                                    >
+                                        {dataPadron
+                                            .filter(p => dataRegistro.tipoSO === p.tipoSO)
+                                            .map((p, index) => (
+                                                <MenuItem key={index} value={p.SO} sx={{ whiteSpace: 'normal' }}>
+                                                    {p.SO}
+                                                </MenuItem>
+                                            ))}
                                     </Select>
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Nombre de la entidad o dependencia:</Typography>
+                                    <Typography variant="body2">Área de adscripcion:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField name='so' fullWidth variant="outlined" size="small" onChange={handleInputChange} sx={{
+                                    <TextField name='areaAdscripcion' fullWidth variant="outlined" size="small" onChange={handleInputChange} sx={{
                                         backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '15px',
@@ -359,21 +434,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
-                                <Grid item xs={6}>
-                                    <Typography variant="body2">Área de adquisición:</Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <TextField name='areaAdquisicion' fullWidth variant="outlined" size="small" onChange={handleInputChange} sx={{
-                                        backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
-                                        '& .MuiOutlinedInput-root': {
-                                            borderRadius: '15px',
-                                        }
-                                    }} />
-                                </Grid>
-                            </Grid>
-
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Cargo público que desempeña:</Typography>
                                 </Grid>
@@ -387,22 +448,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
-                                <Grid item xs={6}>
-                                    <Typography variant="body2">¿Desea recibir información de nuestros eventos?</Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Grid item>
-                                        <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-                                            <Typography>No</Typography>
-                                            <Switch defaultChecked={false} name='recibirInformacion' onChange={handleSwitchChange} inputProps={{ 'aria-label': 'ant design' }} />
-                                            <Typography>Sí</Typography>
-                                        </Stack>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
-
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Correo electrónico institucional*:</Typography>
                                 </Grid>
@@ -416,7 +462,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                 </Grid>
                             </Grid>
 
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2">Teléfono institucional*:</Typography>
                                 </Grid>
@@ -429,34 +475,19 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload,isLoading, setI
                                     }} />
                                 </Grid>
                             </Grid>
-
-                            <Grid container item xs={12} alignItems="center" spacing={2}>
-                                <Grid item xs={6}>
-                                    <Typography variant="body2">¿Requiere un intérprete de lenguaje de señas mexicanas?</Typography>
-                                </Grid>
-                                <Grid item xs={6}>
-                                    <Grid item>
-                                        <Stack direction="row" spacing={1} sx={{ alignItems: 'center' }}>
-                                            <Typography>No</Typography>
-                                            <Switch defaultChecked={false} name='interprete' onChange={handleSwitchChange} inputProps={{ 'aria-label': 'ant design' }} />
-                                            <Typography>Sí</Typography>
-                                        </Stack>
-                                    </Grid>
-                                </Grid>
-                            </Grid>
                         </CardContent>
 
                     </div>
                 </main>
 
                 <footer className="footer_registrar_curso">
-                    <CardActions sx={{ justifyContent: 'center'}}>
+                    <CardActions sx={{ justifyContent: 'center' }}>
                         <Button onClick={handleRegistration} variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", marginTop: 2, marginBottom: 2 }}>Enviar registro</Button>
                     </CardActions>
                 </footer>
             </div>
 
-        
+
 
         </>
     )

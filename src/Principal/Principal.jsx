@@ -133,25 +133,20 @@ function Principal() {
 
                     <div className="privacy-notice">
                         <h2 className="privacy-title">
-                            AVISO DE PRIVACIDAD SIMPLIFICADO DE CAPACITACIONES O EVENTOS PRESENCIALES.
+                            Aviso de Privacidad Simplificado de los Cursos de Capacitación.
                         </h2>
                         <p className="privacy-text">
-                            El Instituto Veracruzano de Acceso a la Información y Protección de Datos Personales es el responsable del tratamiento
-                            de los datos personales que nos proporcione.Sus datos personales serán utilizados para las siguientes finalidades:
-                            a) registrar su inscripción a la modalidad de capacitación que haya elegido;
-                            b) generar listas de asistencia y validación de las mismas;
-                            c) emitir constancia de participación o asistencia de acuerdo a la modalidad de que se trate;
-                            d) establecer comunicación para dar seguimiento de los cursos o aclaración de dudas sobre sus datos, ya sea por algún error o imprecisión,
-                            notificación de cancelación o cambio de horario, fecha o sede; e) generar estadísticas para informes
-                            obligatorios del Instituto ante otros organismos públicos o privados y
-                            f) en el caso de las fotografías que se tomen durante el evento, serán utilizadas para difundir las actividades a través de los diferentes
-                            espacios de comunicación y/o información con los que cuenta el Instituto.De manera adicional,
-                            utilizaremos su información personal para las siguientes finalidades que no son necesarias, pero que nos permiten y
-                            facilitan brindarle una mejor atención: a) envío de material de exposición o apoyo e b) invitaciones a futuros eventos.
-                            En caso de que no desee que sus datos personales sean tratados para las finalidades adicionales, usted puede manifestarlo en el
-                            correo electrónico direcciondecapacitacion.ivai@outlook.com.Se informa que no se realizarán transferencias que requieran su consentimiento,
-                            salvo aquellas que sean necesarias para atender requerimientos de información de una autoridad competente, debidamente fundados y motivados.
-                            Usted podrá consultar el aviso de privacidad integral en el sitio de internet: <a href='http://www.ivai.org.mx/?p=15910'>http://www.ivai.org.mx/?p=15910</a>, en la sección de avisos de privacidad.
+                            La Contraloría General del Estado, es la responsable del uso, tratamiento y destino de los datos personales que se reciben para el registro y control de asistencias a las capacitaciones impartidas por las áreas de la Contraloría General. <br/>
+                            Los datos personales que recabamos de usted serán exclusivamente utilizados para cumplir con los objetivos y atribuciones de esta Dependencia, el tratamiento que se realice será únicamente para las siguientes finalidades: 
+                            a) Registrar su inscripción al curso o capacitación elegida; 
+                            b) Integración de las listas de control de asistencia; 
+                            c) Para la elaboración y entrega de constancias, diplomas o reconocimientos de participación; 
+                            d) Medio de contacto con los participantes para notificar cambios imprevistos de fecha, horario o sede de los cursos y 
+                            e) Generación de estadísticas para informes y seguimiento de las actividades de la Dependencia. Asimismo, se comunica que no se efectuarán tratamientos adicionales. <br/>
+                            Para conocer a detalle la información relacionada con el tratamiento de sus datos y los derechos que le asisten, 
+                            puede consultar el Aviso de Privacidad Integral de los Cursos de Capacitación publicado en la página electrónica oficial de la Contraloría General <a href='http://www.veracruz.gob.mx/contraloria/avisos-de-privacidad/' >http://www.veracruz.gob.mx/contraloria/avisos-de-privacidad/</a> <br/>
+                             O bien puede ponerse en contacto con la Unidad de Transparencia ubicada en Calle Ignacio de la Llave No. 105, Colonia Salud, Xalapa, Veracruz, C.P. 91055, teléfono: (228) 8 41 74 00, Ext. 3089, en horario 09:00 a 15:00 y de 16:00 a 18:00 hrs., Correo electrónico institucional: <a href='mailto:uaip@cgever.gob.mx'>uaip@cgever.gob.mx</a>
+
                         </p>
                         <div className="address-container">
                             <p className="dir">

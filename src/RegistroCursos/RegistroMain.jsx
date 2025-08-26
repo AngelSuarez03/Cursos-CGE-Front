@@ -141,13 +141,13 @@ function RegistroMain() {
         </CardContent>
       </Card>
 
-      <Card onClick={handleNavigationCatalog} variant="outlined" sx={{ width: '20vw', height: '40vh', minHeight: '1vh', maxHeight: '30vh', minWidth: '10vw', borderColor: '#a35494', borderWidth: '.5vh', borderRadius: 3, display: 'inline-flex', marginLeft: 5, cursor: 'pointer' }}>
+      {/*<Card onClick={handleNavigationCatalog} variant="outlined" sx={{ width: '20vw', height: '40vh', minHeight: '1vh', maxHeight: '30vh', minWidth: '10vw', borderColor: '#a35494', borderWidth: '.5vh', borderRadius: 3, display: 'inline-flex', marginLeft: 5, cursor: 'pointer' }}>
         <CardContent sx={{ textAlign: 'center', width: '100%' }}>
           <img src={CatalogoIcon} className="IconoCard" />
           <Typography variant='h3' sx={{ color: '#A35494', fontSize: "5vh" }}>Catálogo</Typography>
           <Typography variant='h3' sx={{ color: '#A35494', fontSize: "5vh" }}>Curso</Typography>
         </CardContent>
-      </Card>
+      </Card>*/}
 
       {isPopupAddOpen && (
         <div className="popup-overlay" >
