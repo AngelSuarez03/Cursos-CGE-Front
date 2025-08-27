@@ -103,7 +103,7 @@
 }
 
 .Boton-Card{
-    background-color: #E7B756;
+    background-color: #DAC192;
     color: black;
     margin-left: .8vw;
     margin-bottom: 1vw;
@@ -121,7 +121,7 @@
 }
 
 .Boton-Card:active {
-    background-color: #c69740; /* Un color más oscuro para el click */
+    background-color: #B28854;
 }
 
 @media (max-width: 1280px) {

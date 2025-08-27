@@ -97,6 +97,7 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
                                     EstatusCupo={curso.estatusCupo}
                                     EstatusCurso={curso.estatusCurso}
                                     TipoCurso={curso.tipo}
+                                    Detalles={curso.detalles}
                                     Curso={curso.curso}
                                     ValorCurricular={curso.valorCurricular}
                                     LigaTeams={curso.ligaTeams}

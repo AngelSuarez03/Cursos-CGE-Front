@@ -33,13 +33,13 @@ body {
     display: grid;
     grid-template-rows: auto 1fr auto;
     grid-template-columns: 1fr;
-    min-height: 100vh; 
+    min-height: 100vh;
     padding-bottom: 0;
 }
 
 .header {
     grid-row: 1;
-    background: #a35494;
+    /*background: #A8253C;*/
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -55,30 +55,40 @@ body {
     left: 0vw;
     margin-top: 2vw;
     position: absolute;
-    max-height: 25vw;
-    width: auto;
+    max-height: 100%;
+    width: 20%;
     margin-left: 2vw;
-    
+
 }
 
 .header-img-right {
     right: 0vw;
     margin-top: 2vw;
     position: absolute;
+    max-height: 4vw;
+    width: auto;
+    margin-right: 2vw;
+    /*filter: invert(100%) sepia(1%) saturate(7482%) hue-rotate(145deg) brightness(107%) contrast(100%);*/
+    z-index: 1;
+
+}
+
+.header-logo-right {
+    right: 0vw;
+    margin-top: 2vw;
+    position: absolute;
     max-height: 6vw;
     width: auto;
     margin-right: 2vw;
-    filter: invert(100%) sepia(1%) saturate(7482%) hue-rotate(145deg) brightness(107%) contrast(100%);
     z-index: 1;
-    
-}
 
+}
 
 .header-title {
     flex: 1;
-    color: white;
+    color: #FFFFFF;
     text-align: center;
-    font-size: clamp(6rem, 4vw, 3.5rem);
+    font-size: clamp(5rem, 4vw, 3.5rem);
     font-family: 'Roboto', sans-serif;
     white-space: nowrap;
     z-index: 1;
@@ -87,7 +97,7 @@ body {
 .Main {
     padding-top: 2vw;
     grid-row: 2;
-    background: linear-gradient(#A35494, #ffffff 20%);
+    /*background: linear-gradient(#A8253C, #ffffff 20%);*/
     justify-content: center;
     align-items: center;
     max-width: 100%;
@@ -99,7 +109,7 @@ body {
 .Main-Admin {
     padding-top: 2vw;
     grid-row: 2;
-    background: linear-gradient(#A35494, #ffffff 20%);
+    /*background: linear-gradient(#A8253C, #ffffff 20%);*/
     justify-content: center;
     max-width: 100%;
     width: 100%;
@@ -129,18 +139,18 @@ body {
 
 .InfoCursos::-webkit-scrollbar {
     width: 8px;
-  }
-  
-  .InfoCursos::-webkit-scrollbar-track {
+}
+
+.InfoCursos::-webkit-scrollbar-track {
     background: transparent;
-  }
-  
-  .InfoCursos::-webkit-scrollbar-thumb {
-    background-color: #E7B756;
+}
+
+.InfoCursos::-webkit-scrollbar-thumb {
+    background-color: #B28854;
     border-radius: 10px;
     border: 2px solid transparent;
     transition: background-color 0.3s ease;
-  }
+}
 
 .BotonesAdmin {
     margin-top: 10vh;
@@ -155,14 +165,15 @@ body {
 }
 
 .BotonArchivos {
-  background-color: #FFFFFF;
+    background-color: #FFFFFF;
 }
 
 .IconoCard {
     display: block;
     margin-left: auto;
     margin-right: auto;
-    filter: invert(45%) sepia(21%) saturate(1418%) hue-rotate(260deg) brightness(83%) contrast(82%);;
+    filter: brightness(0) saturate(100%) invert(20%) sepia(29%) saturate(6017%) hue-rotate(331deg) brightness(90%) contrast(91%);
+    /*filter: invert(45%) sepia(21%) saturate(1418%) hue-rotate(260deg) brightness(83%) contrast(82%);*/
     max-width: 60%;
     max-height: 60%;
 }
@@ -223,11 +234,12 @@ body {
     cursor: pointer;
     margin-right: -2.5vw;
     margin-top: -.5vw;
-  }
-  .IconoSalir:hover {
+}
+
+.IconoSalir:hover {
     filter: invert(90%) sepia(20%) saturate(6840%) hue-rotate(205deg) brightness(101%) contrast(103%);
-  }
-  
+}
+
 
 .Salir {
     display: flex;
@@ -341,34 +353,34 @@ body {
 
 @media (max-width: 1280px) {
 
-    body{
+    body {
         max-width: 100%;
         width: 100%;
         overflow-x: hidden;
     }
 
-    
+
     .InfoCursos {
         max-height: 80.5vh;
         max-width: 100%;
-        width:100vw;
+        width: 100vw;
     }
 
-    .header-title{
+    .header-title {
         font-size: clamp(5vw, 4vw, 3.5rem);
         margin-left: 0vw;
     }
 
-    .privacy-title{
+    .privacy-title {
         font-size: 1.7vw;
 
     }
 
-    .privacy-text{
+    .privacy-text {
         font-size: 1.3vw;
     }
 
-    .dir{
+    .dir {
         font-size: 1.7vw;
     }
 
@@ -379,25 +391,25 @@ body {
         max-height: 20vh;
     }
 
-    .footer{
+    .footer {
         height: 2vw;
     }
 
     .footer p {
         font-size: 1.5vw;
     }
-    
-    
+
+
     .footer .social-group {
         padding-left: 2vw;
         padding-right: 2vw;
         gap: .5vw;
     }
-    
+
     .footer .social-group a {
         margin: 2px;
     }
-    
+
     .footer .social-group img {
         width: 3vw;
     }
@@ -406,28 +418,28 @@ body {
 
 @media (max-width: 1024px) {
 
-    
+
     .InfoCursos {
         max-height: 80.5vh;
         max-width: 100%;
-        width:90vw;
+        width: 90vw;
     }
 
 
-    .header-title{
+    .header-title {
         font-size: clamp(6vw, 4vw, 3.5rem);
     }
 
-    .privacy-title{
+    .privacy-title {
         font-size: 2.2vw;
 
     }
 
-    .privacy-text{
+    .privacy-text {
         font-size: 1.8vw;
     }
 
-    .dir{
+    .dir {
         font-size: 2.1vw;
     }
 
@@ -438,31 +450,30 @@ body {
         max-height: 20vh;
     }
 
-    .footer{
+    .footer {
         height: 3vw;
     }
 
     .footer p {
         font-size: 1.5vw;
     }
-    
-    
+
+
     .footer .social-group {
         padding-left: 2vw;
         padding-right: 2vw;
         gap: .5vw;
     }
-    
+
     .footer .social-group a {
         margin: 2px;
     }
-    
+
     .footer .social-group img {
         width: 3vw;
     }
 
-    .ScrollRegistro{
-    }
+    .ScrollRegistro {}
 
 
 }
@@ -475,20 +486,20 @@ body {
         max-height: 80.5vh;
     }
 
-    .header-title{
+    .header-title {
         font-size: clamp(6vw, 4vw, 3.5rem);
     }
 
-    .privacy-title{
+    .privacy-title {
         font-size: 2.5vw;
 
     }
 
-    .privacy-text{
+    .privacy-text {
         font-size: 2vw;
     }
 
-    .dir{
+    .dir {
         font-size: 2.2vw;
     }
 
@@ -499,30 +510,30 @@ body {
         max-height: 20vh;
     }
 
-    .footer{
+    .footer {
         height: 3vw;
     }
 
     .footer p {
         font-size: 1.8vw;
     }
-    
-    
+
+
     .footer .social-group {
         padding-left: 2vw;
         padding-right: 4vw;
         gap: .5vw;
     }
-    
+
     .footer .social-group a {
         margin: 2px;
     }
-    
+
     .footer .social-group img {
         width: 3vw;
     }
 
-    .ScrollRegistro{
+    .ScrollRegistro {
         height: 80vw;
     }
 
@@ -537,23 +548,23 @@ body {
     .InfoCursos {
         max-height: 80vh;
     }
-    
-    .header-title{
+
+    .header-title {
         font-size: clamp(9.5vw, 4vw, 3.5rem);
         margin-left: 20vw;
     }
 
-    .privacy-title{
+    .privacy-title {
         font-size: 4vw;
 
     }
 
-    .privacy-text{
+    .privacy-text {
         display: none;
         font-size: 1.5vw;
     }
 
-    .dir{
+    .dir {
         font-size: 4vw;
     }
 
@@ -564,29 +575,29 @@ body {
         max-height: 20vh;
     }
 
-    .footer{
+    .footer {
         height: 8vw;
     }
 
     .footer p {
         font-size: 2.5vw;
     }
-    
-    
+
+
     .footer .social-group {
         padding-left: 1vw;
         padding-right: 2vw;
         gap: .5vw;
     }
-    
+
     .footer .social-group a {
         margin: 2px;
     }
-    
+
     .footer .social-group img {
         width: 6vw;
     }
-    
+
 }
 
 
@@ -595,37 +606,35 @@ body {
 @media (max-width: 375px) {
 
 
-    .InfoCursos {
-
-    }
+    .InfoCursos {}
 
     .header-img-left {
-        left: 7vw;
-        margin-top: 0vw;
+        left: 0vw;
+        margin-top: 2vw;
         position: absolute;
-        max-height: 15vw;
-        width: auto;
+        max-height: 100%;
+        width: 20%;
         margin-left: 2vw;
     }
 
-    .header-title{
+    .header-title {
         font-size: clamp(10vw, 4vw, 3.5rem);
         margin-left: 55vw;
         width: 5vw;
         word-wrap: break-word;
     }
 
-    .privacy-title{
+    .privacy-title {
         font-size: 4vw;
 
     }
 
-    .privacy-text{
+    .privacy-text {
         display: none;
         font-size: 1.5vw;
     }
 
-    .dir{
+    .dir {
         font-size: 4vw;
     }
 
@@ -636,31 +645,31 @@ body {
         max-height: 20vh;
     }
 
-    .footer{
+    .footer {
         height: 8vw;
     }
 
     .footer p {
         font-size: 2.5vw;
     }
-    
-    
+
+
     .footer .social-group {
         padding-left: 1vw;
         padding-right: 2vw;
         gap: .5vw;
     }
-    
+
     .footer .social-group a {
         margin: 2px;
     }
-    
+
     .footer .social-group img {
         width: 6vw;
     }
 
 
-    .IconoSalir{
+    .IconoSalir {
         width: 10vw;
         height: 10vh;
         position: absolute;
@@ -668,5 +677,5 @@ body {
         right: 0;
         padding-right: 4vw;
     }
-    
+
 }

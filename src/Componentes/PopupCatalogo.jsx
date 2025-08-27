@@ -108,7 +108,7 @@ function PopupCatalogo({ onClose, reloadCursos, setIsPopupOpenAddCatalogoMsj, se
                             <Button 
                                 variant="contained" 
                                 onClick={agregarTipoCursos} 
-                                sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", fontSize: '2vh', margin: '2vw', width: '10vw' }}>
+                                sx={{ backgroundColor: '#DAC195', color: "#1E1E1E", fontSize: '2vh', margin: '2vw', width: '10vw' }}>
                                 Agregar
                             </Button>
                         </CardActionArea>

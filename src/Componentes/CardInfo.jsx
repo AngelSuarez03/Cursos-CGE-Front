@@ -8,8 +8,8 @@ import ErrorIcon from '../assets/error.svg';
 import CargandoIvai from '../Imagenes/Ivaisito2.0.png'
 
 function CardInfo(Props) {
-    
-    
+
+
     var cupoRestante = Props.CupoDisponible;
     var cupoTotal = Props.Cupo;
 
@@ -79,37 +79,71 @@ function CardInfo(Props) {
         }
     }
 
+
     return (
         <>
-            <div className="Card-Info-Cursos">
-                <Card className='Card-Contenedor' variant="elevation" sx={{ maxWidth: '100%', maxHeight: '60%', backgroundColor: '#A35494', marginBottom: '2vw', alignItems: 'center', justifyContent: 'center', borderRadius: 5 }}>
-                    <CardContent className='Card-Contenido' sx={{ color: '#FFFFFF', marginLeft: 1, marginTop: 1 }}>
-                        <div className="Card-Container">
-                            <div className="Card-Content">
-                                <label className="Card-Lugares" id="cupoDisponible">Cupos:<p id="numeroCupoDisponible" style={{ backgroundColor: obtenerColorCupo(Props.CupoDisponible, Props.Cupo) }}>{Props.CupoDisponible}</p></label>
-                                <label className="Card-Titulo">{Props.NombreCurso}</label><br />
-                                <div className="Info-Card">
-                                    <label className="Card-text" variant="body2">Persona que imparte el curso: {Props.ExpositorCurso}</label>
-                                    <label className="Card-text" variant="body2">Modalidad: {Props.ModalidadCurso}</label>
-                                    <label className="Card-text" variant="body2">Fecha: {Props.FechaCurso}</label>
-                                    <label className="Card-text" variant="body2">Hora: {Props.HoraCurso}</label>
+
+            {Props.tipo === 'Jornada' ? (
+                <div className="Card-Info-Cursos">
+                    <Card className='Card-Contenedor' variant="elevation" sx={{ maxWidth: '100%', maxHeight: '60%', backgroundColor: '#A8253C', marginBottom: '2vw', alignItems: 'center', justifyContent: 'center', borderRadius: 5 }}>
+                        <CardContent className='Card-Contenido' sx={{ color: '#FFFFFF', marginLeft: 1, marginTop: 1 }}>
+                            <div className="Card-Container">
+                                <div className="Card-Content">
+                                    <label className="Card-Lugares" id="cupoDisponible"><b>Cupos:</b><p id="numeroCupoDisponible" style={{ backgroundColor: obtenerColorCupo(Props.CupoDisponible, Props.Cupo) }}>{Props.CupoDisponible}</p></label>
+                                    <label className="Card-Titulo">{Props.NombreCurso}</label><br />
+                                    <div className="Info-Card">
+                                        <label className="Card-text" variant="body2"><b>Modalidad:</b> {Props.ModalidadCurso}</label>
+                                        <label className="Card-text" variant="body2"><b>Fecha:</b> {Props.FechaCurso}</label>
+                                        <label className="Card-text" variant="body2"><b>Hora:</b> {Props.HoraCurso}</label>
+                                        <label className="Card-text" variant="body2" style={{ whiteSpace: 'pre-line', lineHeight: 1.4}}><b>Detalles:</b> <br/>{Props.detalles}</label>
+                                    </div>
+                                    <CardActions className="Card-Actions">
+                                        {Props.Boton == 1 ? (
+                                            <button className='Boton-Card' onClick={handleOpenPopup} variant="contained">
+                                                Registrarse
+                                            </button>
+                                        ) : (
+                                            <button className='Boton-Card' disabled variant="contained">
+                                                Curso lleno
+                                            </button>
+                                        )}
+                                    </CardActions>
                                 </div>
-                                <CardActions className="Card-Actions">
-                                    {Props.Boton == 1 ? (
-                                    <button className='Boton-Card' onClick={handleOpenPopup} variant="contained">
-                                        Ver Disponibilidad
-                                    </button>
-                                    ) : (
-                                        <button className='Boton-Card' disabled  variant="contained">
-                                            Curso lleno
-                                        </button>
-                                    )}
-                                </CardActions>
                             </div>
-                        </div>
-                    </CardContent>
-                </Card>
-            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            ) : (
+                <div className="Card-Info-Cursos">
+                    <Card className='Card-Contenedor' variant="elevation" sx={{ maxWidth: '100%', maxHeight: '60%', backgroundColor: '#A8253C', marginBottom: '2vw', alignItems: 'center', justifyContent: 'center', borderRadius: 5 }}>
+                        <CardContent className='Card-Contenido' sx={{ color: '#FFFFFF', marginLeft: 1, marginTop: 1 }}>
+                            <div className="Card-Container">
+                                <div className="Card-Content">
+                                    <label className="Card-Lugares" id="cupoDisponible"><b>Cupos:</b><p id="numeroCupoDisponible" style={{ backgroundColor: obtenerColorCupo(Props.CupoDisponible, Props.Cupo) }}>{Props.CupoDisponible}</p></label>
+                                    <label className="Card-Titulo">{Props.NombreCurso}</label><br />
+                                    <div className="Info-Card">
+                                        <label className="Card-text" variant="body2"><b>Persona que imparte el curso:</b> {Props.ExpositorCurso}</label>
+                                        <label className="Card-text" variant="body2"><b>Modalidad:</b> {Props.ModalidadCurso}</label>
+                                        <label className="Card-text" variant="body2"><b>Fecha:</b> {Props.FechaCurso}</label>
+                                        <label className="Card-text" variant="body2"><b>Hora:</b> {Props.HoraCurso}</label>
+                                    </div>
+                                    <CardActions className="Card-Actions">
+                                        {Props.Boton == 1 ? (
+                                            <button className='Boton-Card' onClick={handleOpenPopup} variant="contained">
+                                                Registrarse
+                                            </button>
+                                        ) : (
+                                            <button className='Boton-Card' disabled variant="contained">
+                                                Curso lleno
+                                            </button>
+                                        )}
+                                    </CardActions>
+                                </div>
+                            </div>
+                        </CardContent>
+                    </Card>
+                </div>
+            )}
 
             {isPopupOpen && (
                 <div className="popup-overlay">
@@ -129,7 +163,7 @@ function CardInfo(Props) {
                 </div>
             )}
 
-            {isLoading && ( // Muestra el spinner si isLoading es true
+            {isLoading && (
                 <div className="popup-overlay">
                     <div className="spinner">
                         <img className="cargando" src={CargandoIvai} />

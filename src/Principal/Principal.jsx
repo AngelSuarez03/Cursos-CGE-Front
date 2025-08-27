@@ -1,6 +1,8 @@
 import '../Principal/Principal.css';
 import rlceImage from '../Imagenes/rlce.webp';
 import ivaiImage from '../Imagenes/ivai.webp'
+import CGEImage from '../Imagenes/Logo_CGE.png'
+import AmorImage from '../Imagenes/Logo_AMORVER.png'
 import FacebookIcon from '../assets/facebook.svg';
 import YoutubeIcon from '../assets/youtube.svg';
 import TwitterIcon from '../assets/twitter-x.svg';
@@ -64,9 +66,10 @@ function Principal() {
             <section class="layout">
                 <div class="header">
                     <h1 className="header-title">
-                        Cursos disponibles
+                        Capacitaciones disponibles
                     </h1>
-                    <img src={ivaiImage} alt="" className="header-img-left" />
+                    <img src={CGEImage} alt="" className="header-img-left" />
+                    <img src={AmorImage} alt="" className="header-logo-right" />
                 </div>
                 <div className='Main'>
                     <div className='InfoCursos'>
@@ -84,6 +87,8 @@ function Principal() {
                                             CupoDisponible={curso.estatusCupo}
                                             Cupo={curso.cupo}
                                             reloadCursos={getCursos}
+                                            tipo={curso.tipo}
+                                            detalles={curso.detalles}
                                             Boton={0}
                                         />
                                         ) : (
@@ -96,6 +101,8 @@ function Principal() {
                                                 CupoDisponible={curso.estatusCupo}
                                                 Cupo={curso.cupo}
                                                 reloadCursos={getCursos}
+                                                tipo={curso.tipo}
+                                                detalles={curso.detalles}
                                                 Boton={1}
                                             />
                                         )}
@@ -164,18 +171,18 @@ function Principal() {
                 <div className="footer">
 
                     <div className="social-group">
-                        <a href="https://www.facebook.com/ivaiveracruz" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.facebook.com/ContraloriaGeneralVeracruz" target="_blank" rel="noopener noreferrer">
                             <img src={FacebookIcon} alt="Facebook" />
                         </a>
-                        <a href="https://www.youtube.com/@IVAIVeracruz" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.youtube.com/channel/UCLHiMj26O-EH9BMwyP_2kBw" target="_blank" rel="noopener noreferrer">
                             <img src={YoutubeIcon} alt="YouTube" />
                         </a>
-                        <p>ivaiveracruz</p>
+                        <p>Veracruz Me Llena de Orgullo</p>
                     </div>
 
 
                     <div className="social-group">
-                        <a href="https://x.com/VERIVAI" target="_blank" rel="noopener noreferrer">
+                        <a href="https://x.com/cgeveracruz?lang=es" target="_blank" rel="noopener noreferrer">
                             <img src={TwitterIcon} alt="Twitter" />
                         </a>
                         <a href="https://www.instagram.com/verivai" target="_blank" rel="noopener noreferrer">
@@ -186,18 +193,18 @@ function Principal() {
 
 
                     <div className="social-group">
-                        <a href="mailto:contacto@verivai.org.mx">
+                        <a href="mailto:uaip@cgever.gob.mx">
                             <img src={MailIcon} alt="Correo" />
                         </a>
-                        <p>contacto@verivai.org.mx</p>
+                        <p>uaip@cgever.gob.mx</p>
                     </div>
 
 
                     <div className="social-group">
-                        <a href="https://ivai.org.mx" target="_blank" rel="noopener noreferrer">
+                        <a href="https://www.veracruz.gob.mx/" target="_blank" rel="noopener noreferrer">
                             <img src={WebIcon} alt="Web" />
                         </a>
-                        <p>ivai.org.mx</p>
+                        <p>veracruz.gob.mx/contraloria</p>
                     </div>
                 </div>
 
