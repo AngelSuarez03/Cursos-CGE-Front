@@ -42,7 +42,7 @@ function ConsultaRegistros(Props) {
         fecha: '',
         hora: '',
         imparte: '',
-        Cupo: 0,
+        cupo: 0,
         estatusCupo: 0,
         estatusCurso: '',
         modalidad: '',
@@ -51,7 +51,9 @@ function ConsultaRegistros(Props) {
         tipo: '',
         curso: '',
         ligaTeams: '',
+        ligaMoodle: '',
         valorCurricular: '',
+        detalles: ''
     })
 
     const id = window.localStorage.getItem('id');
@@ -280,7 +282,6 @@ function ConsultaRegistros(Props) {
                                     <th>Sujeto Obligado</th>
                                     <th>Teléfono</th>
                                     <th>Correo Electrónico</th>
-                                    <th>Intérprete</th>
                                     <th>Asistencia</th>
                                     <th>Acción</th>
                                     <th>Constancia</th>
@@ -292,14 +293,9 @@ function ConsultaRegistros(Props) {
                                         <tr key={index}>
                                             <td>{registro.nombre}</td>
                                             <td>{registro.apellidos}</td>
-                                            <td>{registro.so}</td>
+                                            <td>{registro.SO}</td>
                                             <td>{registro.telefono}</td>
                                             <td>{registro.correo}</td>
-                                            {registro.interprete === 'true' ? (
-                                                <td>Sí</td>
-                                            ) : (
-                                                <td>No</td>
-                                            )}
                                             <td>
                                                 <input
                                                     type="checkbox"

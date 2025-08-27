@@ -31,7 +31,6 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
         genero: '',
         tipoSO: '',
         SO: '',
-        nombreEntidad: '',
         areaAdscripcion: '',
         cargoPublico: '',
         correo: '',
@@ -47,6 +46,14 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
         if (!dataRegistro.nombre) newErrors.nombre = "El nombre es obligatorio.";
         if (!dataRegistro.apellidos) newErrors.apellidos = "Los apellidos son obligatorios.";
+        if (!dataRegistro.gradoDeEstudios) newErrors.gradoDeEstudios = "El último grado de estudios es obligatorio"
+        if (!dataRegistro.lugarDeProcedencia) newErrors.lugarDeProcedencia = "El lugar de procedencia es obligatorio"
+        if (!dataRegistro.ordenGobierno) newErrors.ordenGobierno = "El orden de gobierno es obligatorio"
+        if (!dataRegistro.genero) newErrors.genero = "El género es obligatorio"
+        if (!dataRegistro.tipoSO) newErrors.tipoSO = "El tipo de Sujeto Obligado es obligatorio"
+        if (!dataRegistro.SO) newErrors.SO = "El Sujeto Obligado es obligatorio"
+        if (!dataRegistro.areaAdscripcion) newErrors.areaAdscripcion = "El area de adscripcion es obligatorio"
+        if (!dataRegistro.cargoPublico) newErrors.cargoPublico = "El cargo público es obligatorio"
         if (!dataRegistro.correo) {
             newErrors.correo = "El correo electrónico es obligatorio.";
         } else if (!/\S+@\S+\.\S+/.test(dataRegistro.correo)) {
@@ -224,15 +231,14 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                 <main className="main_registrar_curso">
                     <div className='ScrollRegistro'>
-
                         <CardContent sx={{ color: '#FFFFFF' }}>
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Nombre(s)*:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Nombre(s)*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField required name='nombre' fullWidth variant='outlined' size="small" onChange={handleInputChange} error={!!errors.nombre} helperText={errors.nombre} sx={{
-                                        backgroundColor: '#FFFFFF', borderRadius: '15px',
+                                    <TextField required name='nombre' fullWidth variant='outlined' size="small" onChange={handleInputChange}   sx={{
+                                        backgroundColor: '#FFFFFF', borderRadius: '15px', 
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '15px',
                                         }
@@ -242,7 +248,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Apellidos*:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Apellidos*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField fullWidth name='apellidos' variant="outlined" size="small" onChange={handleInputChange} error={!!errors.apellidos} helperText={errors.apellidos} sx={{
@@ -257,7 +263,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Último grado de estudios:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Último grado de estudios*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
@@ -266,6 +272,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
                                         variant="outlined"
                                         size="small"
                                         onChange={handleInputChange}
+                                        error={!!errors.gradoDeEstudios} helperText={errors.gradoDeEstudios}
                                         sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                             '& .MuiOutlinedInput-root': {
@@ -288,10 +295,10 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Lugar de procedencia:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Lugar de procedencia*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField name='lugarDeProcedencia' fullWidth variant="outlined" size="small" onChange={handleInputChange} sx={{
+                                    <TextField name='lugarDeProcedencia' fullWidth variant="outlined" size="small" onChange={handleInputChange} error={!!errors.lugarDeProcedencia} helperText={errors.lugarDeProcedencia} sx={{
                                         backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '15px',
@@ -302,7 +309,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Orden de gobierno:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Orden de gobierno*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
@@ -311,6 +318,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
                                         variant="outlined"
                                         size="small"
                                         onChange={handleInputChange}
+                                        error={!!errors.ordenGobierno} helperText={errors.ordenGobierno}
                                         sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                             '& .MuiOutlinedInput-root': {
@@ -327,7 +335,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Género:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Género*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Select
@@ -336,6 +344,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
                                         variant="outlined"
                                         size="small"
                                         onChange={handleInputChange}
+                                        error={!!errors.genero} helperText={errors.genero}
                                         sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                             '& .MuiOutlinedInput-root': {
@@ -353,7 +362,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Nombre de la entidad o dependencia:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Nombre de la entidad o dependencia*:</Typography>
                                 </Grid>
                                 <Grid item xs={3}>
                                     <Select
@@ -363,6 +372,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
                                         size="small"
                                         onChange={handleInputChange}
                                         value={dataRegistro.tipoSO || ''}
+                                        error={!!errors.tipoSO} helperText={errors.tipoSO}
                                         sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                             '& .MuiOutlinedInput-root': {
@@ -394,6 +404,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
                                         onChange={handleInputChange}
                                         disabled={!dataRegistro.tipoSO}
                                         value={dataRegistro.SO || ''}
+                                        error={!!errors.SO} helperText={errors.SO}
                                         sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                             '& .MuiOutlinedInput-root': {
@@ -422,10 +433,10 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Área de adscripcion:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Área de adscripcion*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField name='areaAdscripcion' fullWidth variant="outlined" size="small" onChange={handleInputChange} sx={{
+                                    <TextField name='areaAdscripcion' fullWidth variant="outlined" size="small" onChange={handleInputChange} error={!!errors.areaAdscripcion} helperText={errors.areaAdscripcion} sx={{
                                         backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '15px',
@@ -436,10 +447,10 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Cargo público que desempeña:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Cargo público que desempeña*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <TextField name='cargoPublico' fullWidth variant="outlined" size="small" onChange={handleInputChange} sx={{
+                                    <TextField name='cargoPublico' fullWidth variant="outlined" size="small" onChange={handleInputChange} error={!!errors.cargoPublico} helperText={errors.cargoPublico} sx={{
                                         backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                         '& .MuiOutlinedInput-root': {
                                             borderRadius: '15px',
@@ -450,7 +461,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Correo electrónico institucional*:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Correo electrónico institucional*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField name='correo' fullWidth variant="outlined" size="small" onChange={handleInputChange} error={!!errors.correo} helperText={errors.correo} sx={{
@@ -464,7 +475,7 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
 
                             <Grid container item xs={12} alignItems="center" spacing={2} marginBottom={2}>
                                 <Grid item xs={6}>
-                                    <Typography variant="body2">Teléfono institucional*:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Teléfono institucional*:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
                                     <TextField name='telefono' fullWidth variant="outlined" size="small" onChange={handleInputChange} error={!!errors.telefono} helperText={errors.telefono} sx={{
@@ -476,7 +487,6 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
                                 </Grid>
                             </Grid>
                         </CardContent>
-
                     </div>
                 </main>
 
