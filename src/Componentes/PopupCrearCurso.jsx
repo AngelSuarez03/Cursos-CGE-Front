@@ -71,7 +71,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         estatusCurso: '',
         modalidad: '',
         direccion: '',
-        correoSeguimiento: 'cursos.ivai@gmail.com',
+        correoSeguimiento: 'cursos.cgever@gmail.com',
         tipo: '',
         curso: '',
         ligaTeams: '',
@@ -446,7 +446,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                 <Grid item xs={6}>
                                     <TextField fullWidth variant='outlined' placeholder='cursos.ivai@gmail.com' size='small' name='correoSeguimiento'
                                         disabled='true'
-                                        value='cursos.ivai@gmail.com'
+                                        value='cursos.cgever@gmail.com'
                                         onChange={handleInputChange} sx={{
                                             backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
                                             '& .MuiOutlinedInput-root': {
