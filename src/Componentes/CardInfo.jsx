@@ -66,7 +66,7 @@ function CardInfo(Props) {
                 Props.reloadCursos();
                 document.body.style.overflow = "auto";
                 setScrollEnabled(true);
-            }, 300); // Duración de la animación de salida
+            }, 300);
         }
     };
 

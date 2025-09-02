@@ -89,14 +89,13 @@ function PopupRegistro({ onClose, onOpenPopupMsj, cupo, onReload, isLoading, set
                     titulo: 'Registro Exitoso',
                     mensaje: 'El proceso se ha realizado correctamente. \nLe hemos enviado un correo electrónico con el enlace de acceso, favor de verificar todas las bandejas del correo electrónico.'
                 }, false);
-                //onReload();
             } else if (response.data === 'Curso lleno' && response.status === 200) {
 
                 onOpenPopupMsj({
                     titulo: 'Curso Lleno',
                     mensaje: 'El curso al que intenta registrarse se encuentra lleno. \nNo es posible procesar su registro.'
                 }, true);
-            } else if (response.data === 'Correo Existente' && response.status === 200) {
+            } else if (response.data === 'Correo ya registrado' && response.status === 200) {
                 onOpenPopupMsj({
                     titulo: 'Correo ya registrado',
                     mensaje: 'El correo ya se encuentra registrado en el curso.'
