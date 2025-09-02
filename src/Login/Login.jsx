@@ -8,6 +8,9 @@ import axios from 'axios';
 import PopupMSJBien from "../Componentes/PopupMSJBien.jsx";
 import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
+import CGEIcon from '../Imagenes/Logo_CGE.png'
+import AmorIcon from '../Imagenes/Logo_AMORVER.png'
+import CGEFachada from '../Imagenes/CGE_Fachada.jpeg'
 import { useAuth } from '../routes/AuthContext.jsx'; 
 import { API_URL } from '../util/Constantes.js';
 
@@ -142,12 +145,11 @@ function Login() {
             <div className="contenedorLogin">
                 <div className="left">
                     <div id="ContenedorFachada">
-                        <img className='fachada' src={ivaiFachada} />
-                        <img className="logo_ivai" src={ivaiImage} />
+                        <img className='fachada' src={CGEFachada} />
                     </div>
                 </div>
                 <div className="right">
-                    <img src={rlceImage} className='img-right-l'></img>
+                    <img src={CGEIcon} className='img-right-l'></img>
 
                     <form action="" className='form-login' onSubmit={procesarFormulario}>
                         <p>Usuario</p>
@@ -159,10 +161,6 @@ function Login() {
                         <input type="submit" className="btn_ingresar" disabled={cargando} value="INGRESAR" />
                     </form>
                 </div>
-            </div>
-
-            <div className="footer_l">
-                {/* Social links */}
             </div>
         </section>
 

@@ -31,7 +31,7 @@ function PopupMSJBien({ icon, title, message, buttonText, onClose, onClosePrev, 
                 <CardActions sx={{ justifyContent: 'center' }}>
                     <Button
                         onClick={handleButtonClick}
-                        sx={{ backgroundColor: '#E7B756', color: '#1E1E1E', minWidth: 150, marginBottom: 2, ...buttonStyle }}
+                        sx={{ backgroundColor: '#DAC195', color: '#1E1E1E', minWidth: 150, marginBottom: 2, ...buttonStyle }}
                         variant="contained"
                     >
                         {buttonText}

@@ -6,6 +6,8 @@ import PopupMSJBien from './PopupMSJBien.jsx';
 import ConfirmIcon from '../assets/check.svg';
 import ErrorIcon from '../assets/error.svg';
 import CargandoIvai from '../Imagenes/Ivaisito2.0.png'
+import LoadIcon from '../Imagenes/Load_Icon.gif'
+import { BiLoader } from "react-icons/bi";
 
 function CardInfo(Props) {
 
@@ -17,7 +19,7 @@ function CardInfo(Props) {
     const [isPopupOpenMsj, setIsPopupOpenMsj] = useState(false);
     const [scrollEnabled, setScrollEnabled] = useState(true);
     const [isError, setIsError] = useState(false);
-    const [isLoading, setIsLoading] = useState(false); // Mueve isLoading a CardInfo
+    const [isLoading, setIsLoading] = useState(false); 
     const [dataError, setDataError] = useState({
         titulo: '',
         mensaje: '',
@@ -166,7 +168,7 @@ function CardInfo(Props) {
             {isLoading && (
                 <div className="popup-overlay">
                     <div className="spinner">
-                        <img className="cargando" src={CargandoIvai} />
+                        <BiLoader className="cargando" />
                     </div>
                 </div>
             )}

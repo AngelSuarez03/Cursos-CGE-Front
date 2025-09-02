@@ -14,7 +14,7 @@ function PopupMSJConfirmacion({ onClose }) {
                     </Typography>
                 </CardContent>
                 <CardActions sx={{ justifyContent: 'center' }}>
-                    <Button onClick={onClose} sx={{ backgroundColor: '#E7B756', color: '#1E1E1E', minWidth: 150, marginBottom: 2 }} variant="contained">
+                    <Button onClick={onClose} sx={{ backgroundColor: '#DAC195', color: '#1E1E1E', minWidth: 150, marginBottom: 2 }} variant="contained">
                         Aceptar
                     </Button>
                 </CardActions>

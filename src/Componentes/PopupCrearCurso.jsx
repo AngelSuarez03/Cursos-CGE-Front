@@ -97,7 +97,10 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
         const { name, value } = e.target;
         //setDataCurso({ ...DataCurso, [name]: value });
         if (name === 'tipo') {
-            setDataCurso({ ...DataCurso, tipo: value, imparte: '', curso: ''});
+            if (value === 'Jornada')
+                setDataCurso({ ...DataCurso, tipo: value, imparte: '', curso: ''});
+            else
+                setDataCurso({ ...DataCurso, [name]: value });
         } else if (name === 'modalidad'){
             if(value === 'Presencial'){
                 setDataCurso({ ...DataCurso, modalidad: value, ligaTeams: '', ligaMoodle: '' });
@@ -589,7 +592,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                                 </Grid>
                                 <Grid item xs={6}>
                                     <Button
-                                        sx={{ marginTop: '1vh', borderRadius: '15px', backgroundColor: '#E7B756', color: '#000' }}
+                                        sx={{ marginTop: '1vh', borderRadius: '15px', backgroundColor: '#DAC195', color: '#000' }}
                                         fullWidth
                                         component="label"
                                         role={undefined}
@@ -616,7 +619,7 @@ function PopupCrearCurso({ onClose, onOpenPopupMsj }) {
                 <footer className="footer_agregar_curso">
 
                     <CardActions sx={{ justifyContent: 'center' }}>
-                        <Button onClick={handleSubmit} variant='contained' sx={{ width: '10vw', backgroundColor: '#E7B756', color: '#1E1E1E', marginTop: 2}}>Guardar</Button>
+                        <Button onClick={handleSubmit} variant='contained' sx={{ width: '10vw', backgroundColor: '#DAC195', color: '#1E1E1E', marginTop: 2}}>Guardar</Button>
                     </CardActions>
                 </footer>
             </div>

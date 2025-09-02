@@ -115,7 +115,7 @@ body {
     padding: 5px 10px;
     margin: 0;
     white-space: nowrap;
-    color: #E7B756;
+    color: #B28854;
 }
 
 .numbers {
@@ -141,7 +141,7 @@ table {
 table,
 th,
 td {
-    border: 2px solid #A35494;
+    border: 2px solid #7A1737;
 }
 
 td {
@@ -161,22 +161,19 @@ th {
 }
 
 .icon {
-    filter: invert(100%) sepia(1%) saturate(7482%) hue-rotate(145deg) brightness(107%) contrast(100%);
+    /*filter: invert(100%) sepia(1%) saturate(7482%) hue-rotate(145deg) brightness(107%) contrast(100%);*/
     width: 6vw;
     height: 6vh;
     cursor: pointer;
-}
-
-.icon:hover {
-    filter: invert(90%) sepia(20%) saturate(6840%) hue-rotate(205deg) brightness(101%) contrast(103%);
 }
 
 .icon-text {
     font-size: large;
 }
 
-.table-Data {
+.table-Data td{
     text-align: center;
+    max-width: 10px;
 }
 
 .delete-register {

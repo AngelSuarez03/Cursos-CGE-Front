@@ -157,9 +157,9 @@ function Principal() {
                         </p>
                         <div className="address-container">
                             <p className="dir">
-                                Calle Guadalupe Victoria #7, Zona Centro, C.P. 91000, Xalapa, Veracruz.
+                                C. Ignacio de la Llave 105, Salud, 91070 Xalapa-Enríquez, Ver.
                             </p>
-                            <a href="https://maps.app.goo.gl/q4NLaByuVnYCrV9RA" target="_blank" rel="noopener noreferrer">
+                            <a href="https://maps.app.goo.gl/rM8Czrc1wjtXwknN7" target="_blank" rel="noopener noreferrer">
                                 <img className="imgUb" src={Ubi} alt="Ubicación" />
                             </a>
                         </div>
@@ -185,10 +185,7 @@ function Principal() {
                         <a href="https://x.com/cgeveracruz?lang=es" target="_blank" rel="noopener noreferrer">
                             <img src={TwitterIcon} alt="Twitter" />
                         </a>
-                        <a href="https://www.instagram.com/verivai" target="_blank" rel="noopener noreferrer">
-                            <img src={InstagramIcon} alt="Instagram" />
-                        </a>
-                        <p>verivai</p>
+                        <p>Contraloría General del Estado</p>
                     </div>
 
 

@@ -7,7 +7,7 @@ import Arrow from '../assets/cerrar2.svg'
 import Axios from 'axios';
 import { API_URL } from '../util/Constantes.js';
 
-function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccion, imparte, cupo, estatusCupo, estatusCurso, tipoCurso, curso, valorCurricular, ligaTeams, constancia, closePrev, onOpenPopupMsj }) {
+function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccion, imparte, cupo, estatusCupo, estatusCurso, tipo, curso, valorCurricular, detalles, ligaTeams, constancia, closePrev, onOpenPopupMsj }) {
     const VisuallyHiddenInput = styled('input')({
         clip: 'rect(0 0 0 0)',
         clipPath: 'inset(50%)',
@@ -21,7 +21,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
     });
 
     let constaciaVal = constancia ? "Con constancia." : "Sin constancia.";
-    
+
     const [errors, setErrors] = useState({});
     const [dataTiposCurso, setDataTiposCurso] = useState([])
     const dateInputRef = useRef(null);
@@ -37,12 +37,15 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         modalidad: modalidad,
         direccion: direccion,
         correoSeguimiento: 'cursos.ivai@gmail.com',
-        tipo: tipoCurso,
+        tipo: tipo,
         curso: curso,
         ligaTeams: ligaTeams,
         valorCurricular: valorCurricular,
+        detalles: detalles,
         idCurso: window.localStorage.getItem('id')
     });
+
+    console.info(formData)
     const [selectedFile, setFile] = useState(constancia);
     const [fileName, setFileName] = useState(constaciaVal);
 
@@ -68,14 +71,16 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         const newErrors = {};
 
         if (!formData.nombreCurso) newErrors.nombreCurso = "El nombre es obligatorio.";
+
         if (!formData.fecha) newErrors.fecha = "La fecha es obligatoria.";
+
         if (!formData.hora) newErrors.hora = "La hora es obligatoria.";
-        if (!formData.imparte || formData.imparte.trim() === '') newErrors.imparte = "La persona que imparte el curso es obligatoria.";
+        
         if (!formData.estatusCurso) newErrors.estatusCurso = "El estado del curso es obligatorio.";
+
         if (!formData.modalidad) newErrors.modalidad = "La modalidad es obligatoria.";
+
         if (!formData.tipo) newErrors.tipo = "El tipo de curso es obligatorio.";
-        if (!formData.curso) newErrors.curso = "El curso es obligatorio.";
-        if (!formData.valorCurricular) newErrors.valorCurricular = "El valor curricular es obligatorio.";
 
         return newErrors;
     };
@@ -98,7 +103,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         }
 
         const jsonData = {
-            curso: finalFormData,
+            data: finalFormData,
             constancia: selectedFile ? selectedFile.constancia : null,
         }
 
@@ -120,7 +125,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
 
     const handleChange = (e) => {
         const { name, value } = e.target;
-        setFormData(formData => ({
+        /*setFormData(formData => ({
             ...formData,
             [name]: value,
         }))
@@ -128,7 +133,26 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
         setErrors(errors => ({
             ...errors,
             [name]: '',
-        }))
+        }))*/
+
+        if (name === 'tipo') {
+            if (value === 'Jornada')
+                setFormData({ ...formData, tipo: value, imparte: '', curso: '' });
+            else
+                setFormData({ ...formData, [name]: value });
+        } else if (name === 'modalidad') {
+            if (value === 'Presencial') {
+                setFormData({ ...formData, modalidad: value, ligaTeams: '', ligaMoodle: '' });
+            } else if (value === 'Virtual') {
+                setFormData({ ...formData, modalidad: value, direccion: '', ligaMoodle: '' });
+            } else if (value === 'Autoaprendizaje') {
+                setFormData({ ...formData, modalidad: value, ligaTeams: '', direccion: '' })
+            }
+        } else {
+            setFormData({ ...formData, [name]: value });
+        }
+        setErrors({ ...errors, [name]: '' });
+
     };
 
     const handleChangeInputNumbers = (e) => {
@@ -143,15 +167,15 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
 
     const handleInputText = (e) => {
         const { name, value } = e.target;
-        
+
         const regex = /^[a-zA-ZÁÉÍÓÚáéíóúÑñ\s]*$/;
-        
-        if (regex.test(value) || value === "") { 
+
+        if (regex.test(value) || value === "") {
             setFormData((formData) => ({
                 ...formData,
                 [name]: value
             }));
-    
+
             setErrors((errors) => ({
                 ...errors,
                 [name]: ''
@@ -238,7 +262,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Nombre: *
+                                    Nombre*:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -258,7 +282,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Fecha: *
+                                    Fecha*:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -283,7 +307,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Hora: *
+                                    Hora*:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -308,7 +332,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Modalidad: *
+                                    Modalidad*:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -324,6 +348,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     sx={commonStyles}>
                                     <MenuItem value='Presencial'>Presencial</MenuItem>
                                     <MenuItem value='Virtual'>Virtual</MenuItem>
+                                    <MenuItem value='Autoaprendizaje'>Autoaprendizaje</MenuItem>
                                 </Select>
                             </Grid>
                         </Grid>
@@ -332,7 +357,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                             <Grid container item xs={12} alignItems="center" spacing={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                        Direccion: *
+                                        Direccion:
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={6}>
@@ -353,7 +378,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                             <Grid container item xs={12} alignItems="center" spacing={2}>
                                 <Grid item xs={6}>
                                     <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                        Liga Teams: *
+                                        Liga Teams:
                                     </Typography>
                                 </Grid>
                                 <Grid item xs={6}>
@@ -370,10 +395,28 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                             </Grid>
                         )}
 
-                        <Grid container item xs={12} alignItems="center" spacing={2}>
+                        {formData.modalidad === 'Autoaprendizaje' && (
+                            <Grid container item xs={12} alignItems="center" spacing={2}>
+                                <Grid item xs={6}>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Liga Moodle:</Typography>
+                                </Grid>
+                                <Grid item xs={6}>
+                                    <TextField fullWidth variant='outlined' size='small' name='ligaMoodle'
+                                        onChange={handleChange}
+                                        sx={{
+                                            backgroundColor: '#FFFFFF', borderRadius: '15px', marginTop: 1,
+                                            '& .MuiOutlinedInput-root': {
+                                                borderRadius: '15px',
+                                            }
+                                        }} />
+                                </Grid>
+                            </Grid>
+                        )}
+
+                        <Grid container item xs={12} alignItems="center" spacing={2} sx={{ display: formData.tipo === "Jornada" ? "none" : "flex" }}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Persona que Imparte el Curso: *
+                                    Persona que imparte el curso:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -383,8 +426,6 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     size="small"
                                     name="imparte"
                                     value={formData.imparte}
-                                    error={!!errors.imparte}
-                                    helperText={errors.imparte}
                                     onChange={handleInputText}
                                     sx={commonStyles}
                                 />
@@ -394,7 +435,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Lugares Disponibles: *
+                                    Lugares disponibles*:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -412,7 +453,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Correo de Seguimiento: *
+                                    Correo de Seguimiento:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -431,7 +472,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Estatus del Curso: *
+                                    Estatus*:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -442,6 +483,8 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     name="estatusCurso"
                                     value={formData.estatusCurso}
                                     onChange={handleChange}
+                                    error={!!errors.estatusCurso}
+                                    helperText={errors.estatusCurso}
                                     sx={commonStyles}
                                 >
                                     <MenuItem value="Activo">Activo</MenuItem>
@@ -453,7 +496,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Tipo del Curso: *
+                                    Tipo de capacitación*:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -464,6 +507,8 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     name="tipo"
                                     value={formData.tipo}
                                     onChange={handleChange}
+                                    error={!!errors.tipo}
+                                    helperText={errors.tipo}
                                     sx={commonStyles}
                                 >
                                     {['Conferencia', 'Curso', 'Foro', 'Jornada', 'Taller', 'Segundo Trimestre 2017', 'Otro'].map((tipo) => (
@@ -474,10 +519,10 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                 </Select>
                             </Grid>
                         </Grid>
-                        <Grid container item xs={12} alignItems="center" spacing={2}>
+                        <Grid container item xs={12} alignItems="center" spacing={2} sx={{ display: formData.tipo === "Jornada" ? "none" : "flex" }}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Curso: *
+                                    Curso:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -501,7 +546,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         <Grid container item xs={12} alignItems="center" spacing={2}>
                             <Grid item xs={6}>
                                 <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>
-                                    Valor Curricular en Horas: *
+                                    Valor curricular en horas:
                                 </Typography>
                             </Grid>
                             <Grid item xs={6}>
@@ -511,38 +556,64 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                                     size="small"
                                     name="valorCurricular"
                                     value={formData.valorCurricular}
-                                    // error={!!errors.valorCurricular}
-                                    // helperText={errors.valorCurricular}
                                     onChange={handleChange}
                                     sx={commonStyles}
                                 />
                             </Grid>
                         </Grid>
-                        <Grid container item xs={12} alignItems='center' spacing={2}>
+
+                        {formData.tipo === 'Jornada' && (
+                            <Grid container item xs={12} alignItems="center" spacing={2} marginTop={0}>
                                 <Grid item xs={6}>
-                                    <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Constacia del Curso:</Typography>
+                                    <Typography variant="body2" sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Detalles:</Typography>
                                 </Grid>
                                 <Grid item xs={6}>
-                                    <Button
-                                        sx={{ marginTop: '1vh', borderRadius: '15px', backgroundColor: '#E7B756', color: '#000' }}
+                                    <TextField
                                         fullWidth
-                                        component="label"
-                                        role={undefined}
-                                        variant="contained"
-                                        tabIndex={-1}
-                                        startIcon={<CloudUploadIcon />}
-                                    >
-                                        { fileName}
-                                        <VisuallyHiddenInput
-                                            type="file"
-                                            name='constancia'
-                                            id='constancia'
-                                            onChange={handleAddConstancia}
-                                            multiple
-                                        />
-                                    </Button>
+                                        variant="outlined"
+                                        size="small"
+                                        name="detalles"
+                                        multiline
+                                        minRows={3}
+                                        value={formData.detalles}
+                                        onChange={handleChange}
+                                        sx={{
+                                            backgroundColor: '#FFFFFF',
+                                            borderRadius: '15px',
+                                            '& .MuiOutlinedInput-root': {
+                                                borderRadius: '15px',
+                                            },
+                                        }}
+                                    />
                                 </Grid>
                             </Grid>
+                        )}
+
+                        <Grid container item xs={12} alignItems='center' spacing={2} sx={{ display: formData.tipo === "Jornada" ? "none" : "flex" }}>
+                            <Grid item xs={6}>
+                                <Typography variant='body2' sx={{ color: '#FFFFFF', fontSize: '2vh', fontWeight: 'bold' }}>Constacia del Curso:</Typography>
+                            </Grid>
+                            <Grid item xs={6}>
+                                <Button
+                                    sx={{ marginTop: '1vh', borderRadius: '15px', backgroundColor: '#DAC195', color: '#000' }}
+                                    fullWidth
+                                    component="label"
+                                    role={undefined}
+                                    variant="contained"
+                                    tabIndex={-1}
+                                    startIcon={<CloudUploadIcon />}
+                                >
+                                    {fileName}
+                                    <VisuallyHiddenInput
+                                        type="file"
+                                        name='constancia'
+                                        id='constancia'
+                                        onChange={handleAddConstancia}
+                                        multiple
+                                    />
+                                </Button>
+                            </Grid>
+                        </Grid>
                     </CardContent>
                 </div>
             </main>
@@ -553,7 +624,7 @@ function ModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, direccio
                         variant="contained"
                         sx={{
                             width: '10vw',
-                            backgroundColor: '#E7B756',
+                            backgroundColor: '#DAC195',
                             color: '#1E1E1E',
                             marginTop: 2,
                         }}

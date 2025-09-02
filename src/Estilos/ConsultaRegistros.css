@@ -109,7 +109,7 @@ table {
 table,
 th,
 td {
-    border: 2px solid #A35494;
+    border: 2px solid #7A1737;
 }
 
 td {
@@ -120,10 +120,11 @@ td {
 th {
     font-size: large;
     padding: 30px; 
-    background-color: #A35494;
+    background-color: #A8253C;
     color: #ffffff;
     border: #B1B1B1;
     position: sticky;
+    max-width: auto;
     top: 0;
     z-index: 1;
 }
@@ -135,14 +136,10 @@ th {
 }
 
 .icon {
-    filter: invert(100%) sepia(1%) saturate(7482%) hue-rotate(145deg) brightness(107%) contrast(100%);
+    /*filter: invert(100%) sepia(1%) saturate(7482%) hue-rotate(145deg) brightness(107%) contrast(100%);*/
     width: 6vw;
     height: 6vh;
     cursor: pointer;
-}
-
-.icon:hover {
-    filter: invert(90%) sepia(20%) saturate(6840%) hue-rotate(205deg) brightness(101%) contrast(103%);
 }
 
 .icon-text {

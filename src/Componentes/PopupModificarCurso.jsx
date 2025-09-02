@@ -456,7 +456,7 @@ function PopupModificarCurso({ onClose, nombreCurso, fecha, hora, modalidad, dir
                 <footer className="footer_Modificar_Curso">
 
                     <CardActions sx={{ justifyContent: 'center' }}>
-                        <Button onClick={handleSubmit} variant="contained" sx={{ width: '10vw', backgroundColor: '#E7B756', color: "#1E1E1E", marginTop: 2 }}>Guardar</Button>
+                        <Button onClick={handleSubmit} variant="contained" sx={{ width: '10vw', backgroundColor: '#DAC195', color: "#1E1E1E", marginTop: 2 }}>Guardar</Button>
                     </CardActions>
                 </footer>
 

@@ -12,7 +12,7 @@
 }
 
 .left { 
-    background-color: #A35494;
+    /*background-color: #B28854;*/
     display: flex;
     place-items: center;
     justify-content: center;
@@ -32,17 +32,16 @@
     left: 0;
     width: 100%;
     height: 100%;
-    object-fit: cover; 
-    opacity: 40%;
-    transform: scale(1.4); 
+    object-fit: fill;
+    transform: scale(1);
 }
 
-
-.logo_ivai {
+.logo_CGE {
     position: absolute;
-    top: 5%;
-    left: 25%;
-    height: 85vh;
+    top: 30%;
+    left: 15%;
+    height: 30%;
+    width: 70%;
     border: none;
 }
 
@@ -69,17 +68,17 @@
     font-family: Arial, Helvetica, sans-serif;
     font-weight: bold;
     font-size: 1.5vw;
-    color: #A35494;
+    color: #7A1737;
 }
 
 .img-right-l {
-    max-height: 90%; 
-    width: auto; 
+    max-height: 30%; 
+    width: 50%; 
 }
 
 input {
-    border: 0.1vh solid #A35494; 
-    color: #A35494;
+    border: 0.1vh solid #A8253C; 
+    color: #7A1737;
     border-radius: 10px; 
     padding-left: 0.5vw;
     padding-right: 0.5vw;
@@ -91,12 +90,12 @@ input {
 }
 
 input:focus {
-    border-color: #A35494; 
+    border-color: #7A1737; 
     box-shadow: 0 0 0 2px rgba(163, 84, 148, 0.3); 
 }
 
 .btn_ingresar {
-    background-color: #A35494;
+    background-color: #DAC195;
     color: white; 
     border: none;
     border-radius: 10px; 
@@ -111,10 +110,9 @@ input:focus {
 }
 
 .btn_ingresar:hover {
-    background-color: #8c2c6d;
+    background-color: #B28854;
 }
 
-/* FOOTER */
 .footer_l {
     position: relative;
     bottom: 0;
@@ -124,7 +122,7 @@ input:focus {
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
-    background-color: #A35494;
+    background-color: #A8253C;
     text-align: center;
     color: white;
 }

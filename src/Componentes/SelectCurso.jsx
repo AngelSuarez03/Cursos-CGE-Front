@@ -79,7 +79,7 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
                 <header className="header_Select">
                     <h1>Seleccione el curso a modificar:</h1>
                     <label htmlFor='campoBusqueda' className='textoBusqueda'><strong>Buscar Curso: </strong></label>
-                    <input type='text' id='campoBusqueda' className='cuadroBusqueda' placeholder='Ingrese el nombre o fecha del curso (Año-Mes-Día)' onChange={(e) => setCursoBuscado(e.target.value)}></input>
+                    <input type='text' id='campoBusqueda' className='cuadroBusqueda' placeholder='Ingrese el nombre o fecha del curso (YYYY-MM-DD)' onChange={(e) => setCursoBuscado(e.target.value)}></input>
                 </header>
 
                 <main className="main_Select">
@@ -96,7 +96,7 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
                                     Cupo={curso.cupo}
                                     EstatusCupo={curso.estatusCupo}
                                     EstatusCurso={curso.estatusCurso}
-                                    TipoCurso={curso.tipo}
+                                    Tipo={curso.tipo}
                                     Detalles={curso.detalles}
                                     Curso={curso.curso}
                                     ValorCurricular={curso.valorCurricular}
@@ -130,7 +130,7 @@ function SelectCurso({ onClose, handleOpenPopupUpdateCurso }) {
                     <Button onClick={nextPage} disabled={currentPage === totalPages}>Siguiente</Button>
                 </div>
                 <footer className="footer_Select">
-                    <Button variant="contained" sx={{ backgroundColor: '#E7B756', color: "#1E1E1E", marginTop: -2, marginLeft: 3, marginBottom: 3, fontSize: '2vh' }} onClick={onClose}>Cancelar</Button>
+                    <Button variant="contained" sx={{ backgroundColor: '#DAC195', color: "#1E1E1E", marginTop: -2, marginLeft: 3, marginBottom: 3, fontSize: '2vh' }} onClick={onClose}>Cancelar</Button>
                 </footer>
 
             </div>

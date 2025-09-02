@@ -104,22 +104,23 @@
 
 .spinner {
   color: white;
-  font-size: 24px;
+  font-size: 30px;
   margin-left: 25vw;
   margin-bottom: 5vw;
   padding: 40vw;
 }
 
 .spinner .cargando{
-  max-width: 20vw;
-  max-height: 20vw;
+  animation: spin 1s linear infinite;
+  max-width: 40vw;
+  max-height: 40vw;
+  filter: brightness(0) saturate(100%) invert(98%) sepia(92%) saturate(0%) hue-rotate(298deg) brightness(110%) contrast(100%);
 }
-
 .cargando {
-  animation: girar 2s linear infinite;
+  font-size: 2rem;
 }
 
-@keyframes girar {
+@keyframes spin {
   from {
     transform: rotate(0deg);
   }
@@ -127,10 +128,6 @@
     transform: rotate(360deg);
   }
 }
-
-
-
-
   
 @media (max-width: 1920px) {
 
@@ -141,8 +138,8 @@
   }
 
   .spinner .cargando{
-    max-width: 20vw;
-    max-height: 20vw;
+    max-width: 40vw;
+    max-height: 40vw;
     margin-right: 26vw;
   }
 
